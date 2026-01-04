@@ -172,10 +172,25 @@ See [INTEGRATION_GUIDE.md](INTEGRATION_GUIDE.md) for complete API documentation.
 
 ## 📚 Documentation
 
+- **[DEPLOYMENT.md](DEPLOYMENT.md)** - Production deployment guide for Vercel and Render
 - **[INTEGRATION_GUIDE.md](INTEGRATION_GUIDE.md)** - Complete guide for running the full-stack application
 - **[API Documentation](http://localhost:8000/docs)** - Interactive API documentation (when backend is running)
+- **[Frontend README](frontend_vite/README.md)** - Frontend-specific documentation and setup
 - **Model Training Logs** - Check `logs/` directory for detailed training information
 - **Model Metrics** - View `outputs/*/observations/` for performance reports
+
+## 🚀 Deployment
+
+This application is designed to be deployed on:
+- **Frontend**: Vercel (recommended for React/Vite apps)
+- **Backend**: Render (recommended for Python FastAPI apps)
+
+See **[DEPLOYMENT.md](DEPLOYMENT.md)** for complete step-by-step deployment instructions, including:
+- Setting up Vercel for frontend hosting
+- Configuring Render for backend deployment
+- Environment variable configuration
+- Connecting frontend and backend in production
+- Troubleshooting common deployment issues
 
 ## ⚙️ Configuration
 
