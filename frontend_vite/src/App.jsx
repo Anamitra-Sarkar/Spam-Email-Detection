@@ -7,6 +7,7 @@ import SpamDetector from "./components/SpamDetector";
 import Features from "./components/Features";
 import AIVisualization from "./components/AIVisualization";
 import Footer from "./components/Footer";
+import Contact from "./components/Contact";
 
 const LandingPage = () => {
   const detectorRef = useRef(null);
@@ -34,9 +35,9 @@ const LandingPage = () => {
       />
       <HowItWorks />
       <SpamDetector />
-      <Features />
+      <Features onCheckEmailClick={scrollToDetector} />
       <AIVisualization />
-      <Footer />
+      <Footer onHowItWorksClick={scrollToHowItWorks} />
     </div>
   );
 };
@@ -47,6 +48,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </BrowserRouter>
     </div>

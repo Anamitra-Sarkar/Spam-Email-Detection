@@ -162,7 +162,7 @@ const FeatureCard = ({ feature, index }) => {
   );
 };
 
-const Features = () => {
+const Features = ({ onCheckEmailClick }) => {
   return (
     <section id="features" className="py-24 relative overflow-hidden">
       {/* Background */}
@@ -309,6 +309,7 @@ const Features = () => {
                 </div>
                 
                 <motion.button
+                  onClick={onCheckEmailClick}
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Shield, Github, Twitter, Linkedin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import InboxXorcistLogo from './InboxXorcistLogo';
 
 const SocialLink = ({ href, icon: Icon, label }) => (
@@ -17,7 +18,7 @@ const SocialLink = ({ href, icon: Icon, label }) => (
   </motion.a>
 );
 
-const Footer = () => {
+const Footer = ({ onHowItWorksClick }) => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -52,16 +53,23 @@ const Footer = () => {
             viewport={{ once: true }}
             className="flex flex-wrap justify-center gap-6 text-sm"
           >
-            {['How It Works', 'Contact'].map((link, i) => (
-              <motion.a
-                key={link}
-                href={`#${link.toLowerCase().replace(' ', '-')}`}
-                whileHover={{ y: -2 }}
+            <motion.button
+              onClick={onHowItWorksClick}
+              whileHover={{ y: -2 }}
+              className="text-gray-400 hover:text-cyan-400 transition-colors cursor-pointer"
+            >
+              How It Works
+            </motion.button>
+            <motion.div>
+              <Link
+                to="/contact"
                 className="text-gray-400 hover:text-cyan-400 transition-colors"
               >
-                {link}
-              </motion.a>
-            ))}
+                <motion.span whileHover={{ y: -2 }} className="inline-block">
+                  Contact
+                </motion.span>
+              </Link>
+            </motion.div>
           </motion.div>
 
           {/* Social links */}
