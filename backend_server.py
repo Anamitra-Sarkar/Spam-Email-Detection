@@ -43,12 +43,9 @@ allowed_origins = [
 
 # Add production frontend URL if provided
 if FRONTEND_URL:
-    allowed_origins.append(FRONTEND_URL)
-    # Also add without trailing slash if it has one
-    if FRONTEND_URL.endswith('/'):
-        allowed_origins.append(FRONTEND_URL.rstrip('/'))
-    else:
-        allowed_origins.append(FRONTEND_URL + '/')
+    # Normalize URL by removing trailing slash
+    normalized_url = FRONTEND_URL.rstrip('/')
+    allowed_origins.append(normalized_url)
 
 app.add_middleware(
     CORSMiddleware,
