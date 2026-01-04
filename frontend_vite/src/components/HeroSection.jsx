@@ -114,7 +114,7 @@ const HeroSection = ({ onCheckEmailClick, onHowItWorksClick }) => {
       />
 
       {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center pt-32 md:pt-0">
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
