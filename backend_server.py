@@ -20,6 +20,9 @@ from src.utils.email_utils import extract_body, all_recipients, clean_text
 
 logger = get_logger(__name__)
 
+# Get environment variables
+FRONTEND_URL = os.getenv('FRONTEND_URL', '')
+
 # Initialize FastAPI app
 app = FastAPI(
     title="Spam Email Detection API",
@@ -28,16 +31,25 @@ app = FastAPI(
 )
 
 # Configure CORS to allow frontend access
+# Build allowed origins list
+allowed_origins = [
+    "http://localhost:3000",
+    "http://localhost:3001",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:3001",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+
+# Add production frontend URL if provided
+if FRONTEND_URL:
+    # Normalize URL by removing trailing slash
+    normalized_url = FRONTEND_URL.rstrip('/')
+    allowed_origins.append(normalized_url)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "http://localhost:3001",
-        "http://127.0.0.1:3000",
-        "http://127.0.0.1:3001",
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-    ],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -352,4 +364,5 @@ async def predict_mbox(file: UploadFile = File(...)):
 # Run with: uvicorn backend_server:app --reload --port 8000
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    port = int(os.getenv("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
